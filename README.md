@@ -1,4 +1,6 @@
 Enhanced Control Handling and Aiming Script
+
+
 Description:
 
 This update improves control handling when the player is aiming while armed. It prevents certain actions like jumping, rolling, and sprinting when the player is aiming or in a combat situation. Additionally, the script ensures that these actions are blocked even when barely aiming or when performing roll-like animations. This helps maintain a smoother roleplay experience and prevents unwanted glitches.
