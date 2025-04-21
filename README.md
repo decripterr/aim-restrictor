@@ -16,7 +16,10 @@ In-air Action Prevention: Immediately cancels any jump, fall, or roll attempts i
 
 Combat State Control: When in combat or aiming, actions like jumping and rolling are properly blocked, ensuring that the player remains in an appropriate stance.
 
+
 Changes:
+
+
 Added checks for jumping and falling: The script now detects if the player is jumping, falling, or ragdolling, and immediately cancels these actions if they’re aiming or armed.
 
 Roll and Sprint Blocking: Players cannot roll or sprint while aiming, as these actions conflict with the aiming and combat states.
