@@ -27,8 +27,8 @@ Citizen.CreateThread(function()
             waitTime = 250 -- Semi-alert state, still relatively fast
         end
 
-        -- Block specific controls when armed and aiming (including barely aiming state)
-        if isArmed then
+        -- Block specific controls when armed and aiming
+        if isAiming and isArmed then
             -- Disable controls for jumping, rolling, sprinting, stealth, and melee
             DisableControlAction(0, 22, true) -- Jump (SPACE)
             DisableControlAction(0, 44, true) -- Roll (Q)
@@ -39,16 +39,16 @@ Citizen.CreateThread(function()
             DisableControlAction(0, 142, true) -- Melee block (F)
             DisableControlAction(0, 143, true) -- Dodge (CTRL)
 
-            -- Block roll and jump-like behavior even if barely aiming
+            -- Block the ability to jump or roll by checking animations and movement
             if IsPedOnFoot(ped) then
-                -- Block jump and roll attempts during aiming or idle aiming states
+                -- Cancel any in-air or dive/roll attempts
                 if IsPedJumping(ped) or IsPedFalling(ped) or IsPedRagdoll(ped) then
                     ClearPedTasksImmediately(ped)
                 elseif IsPedRunning(ped) then
                     -- Block rolling attempts while running
                     ClearPedTasksImmediately(ped)
                 else
-                    -- Block roll animations immediately during aiming (even barely aiming)
+                    -- Ensure any roll animations are canceled instantly
                     local currentAnim = GetEntityAnimDict(ped)
                     if rollAnims[currentAnim] then
                         ClearPedTasksImmediately(ped)
